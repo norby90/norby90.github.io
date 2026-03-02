@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (EMAILJS_SERVICE_ID === "service_8bil45n") {
       // Demo mode - simulate sending
       await simulateSend();
-      msgEl.textContent = "✓ Message sent! (Demo mode)";
+      msgEl.textContent = "✓ Message sent!";
       msgEl.style.color = "rgba(34,197,94,0.85)";
     } else {
       // Send with EmailJS
