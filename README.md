@@ -1,4 +1,4 @@
-# Password Strength Checker
+# Password Strengtdau;iwuab;
 
 A simple and efficient web application that analyzes the strength of a password in real time.
 
