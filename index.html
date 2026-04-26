@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mihai | My Links & Projects</title>
     <meta name="description" content="Personal linktree-style site for projects and social media.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +31,7 @@
                 <img src="profile1.png" alt="Profile Photo" id="profile-img">
             </div>
             <h1 id="profile-name">Mihai</h1>
-            <p id="profile-bio">Tech Enthusiast & Developer</p>
+            <p id="profile-bio">`Student</p>
         </header>
 
         <section class="links-section">
@@ -39,22 +40,17 @@
                 <span class="link-text">Atestat Site</span>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
             </a>
-            <a href="#" class="link-card" id="link-linkedin">
-                <span class="icon-wrapper"><i class="fa-brands fa-linkedin-in"></i></span>
-                <span class="link-text">LinkedIn Professional</span>
+            <a href="https://www.instagram.com/mihaii_90/" class="link-card" id="link-instagram">
+                <span class="icon-wrapper"><i class="fa-brands fa-instagram"></i></span>
+                <span class="link-text">Instagram</span>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
             </a>
-            <a href="#" class="link-card" id="link-twitter">
-                <span class="icon-wrapper"><i class="fa-brands fa-twitter"></i></span>
-                <span class="link-text">Twitter / X</span>
-                <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-            <a href="#" class="link-card" id="link-portfolio">
-                <span class="icon-wrapper"><i class="fa-solid fa-briefcase"></i></span>
+            <a href="https://github.com/norby90" class="link-card" id="link-portfolio">
+                <span class="icon-wrapper"><i class="fa-brands fa-github"></i></span>
                 <span class="link-text">Personal Portfolio</span>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
             </a>
-            <a href="#" class="link-card" id="link-email">
+            <a href="mailto:mihai440@proton.me" class="link-card" id="link-email">
                 <span class="icon-wrapper"><i class="fa-solid fa-envelope"></i></span>
                 <span class="link-text">Contact Me</span>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
@@ -63,124 +59,14 @@
 
         <footer class="social-footer">
             <div class="social-icons">
-                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/mihaii_90/" aria-label="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://discord.gg/D4D82Q923f" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
             </div>
         </footer>
     </main>
 
-    <script>
-        // Particle System
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-            }
-
-            update() {
-                // Mouse interaction
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                let forceDirectionX = dx / distance;
-                let forceDirectionY = dy / distance;
-                let maxDistance = mouse.radius;
-                let force = (maxDistance - distance) / maxDistance;
-                let directionX = forceDirectionX * force * this.density;
-                let directionY = forceDirectionY * force * this.density;
-
-                if (distance < mouse.radius) {
-                    this.x -= directionX;
-                    this.y -= directionY;
-                } else {
-                    if (this.x !== this.baseX) {
-                        let dx = this.x - this.baseX;
-                        this.x -= dx / 20;
-                    }
-                    if (this.y !== this.baseY) {
-                        let dy = this.y - this.baseY;
-                        this.y -= dy / 20;
-                    }
-                }
-
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                // Keep particles in view
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        // Card hover effect
-        document.querySelectorAll('.link-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
